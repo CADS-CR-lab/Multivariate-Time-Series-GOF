@@ -1,0 +1,6 @@
+This function returns a corrected critical value given a specific combination of number of time series, sample size, and lag
+The number of time series ranges: 2, 3, 5, 10
+Sample Size: any number 40 to 300
+Lag: 2 to (sample size-1)
+
+The function does not give an error when the input is out of range. Instead, it will return an empty value.
