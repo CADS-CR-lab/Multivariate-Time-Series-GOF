@@ -3,12 +3,14 @@
 # The function is built to calculate the correct Type 1 error rates and
 # returns one critical value for any combination of (num_of_ts, sample_size, lag)
 # Parameters include: number of time series, sample size, and lag
-# Number of time series input: 2, 3, 5, 10
+# Number of time series input:1, 2, 3, 5, 10
 # Sample size input: any sample size from 40 to 300
 # Lag input: any lag from 2 to (sample_size - 1)
+
+# Note: univariate case is added to the function. See Description of the Function file
                             
 MTS_T1_Correction <- function(num_of_ts, sample_size, lag){ 
-  # models for analyzing 2 time series
+  # models for univariate case
   if (num_of_ts==1){
     # When sample size is less than or equal to 50
     if (sample_size<=50){
@@ -48,7 +50,7 @@ MTS_T1_Correction <- function(num_of_ts, sample_size, lag){
       crit_val <- sum(k1_mod6*k1_coef6) + 0.05
       return (crit_val)
     }
-    # models for analyzing 3 time series
+    # models for analyzing 2 time series
   }else if (num_of_ts==2){
     # When sample size is less than or equal to 50
     if (sample_size<=50){
