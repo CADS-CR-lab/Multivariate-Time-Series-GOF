@@ -9,7 +9,47 @@
                             
 MTS_T1_Correction <- function(num_of_ts, sample_size, lag){ 
   # models for analyzing 2 time series
-  if (num_of_ts==2){
+  if (num_of_ts==1){
+    # When sample size is less than or equal to 50
+    if (sample_size<=50){
+      k1_mod1 <- c(sample_size^0.2,lag^0.3,sample_size^(0.2)*lag^(0.3),sample_size^(2*0.2)*lag^(2*0.3),sample_size^(2*0.2),sample_size^(3*0.2)*lag^(2*0.3),sample_size^(3*0.2)*lag^(3*0.3),lag^(4*0.3),lag^(5*0.3))
+      k1_coef1 <- c(0.425295550,-1.353900348,0.593460481, 0.149028427,-0.183530918,-0.070354707,0.004418674,-0.017762231,0.002106535)
+      crit_val <- sum(k1_mod1*k1_coef1) + 0.05
+      return (crit_val)
+      # When sample size is between 51 and 70
+    }else if (50<sample_size & sample_size<=70){
+      k1_mod2 <- c(sample_size^2,lag^1.1,sample_size^(2)*lag^(1.1),sample_size^(2*2)*lag^(2*1.1),sample_size^(2*2),sample_size^(3*2)*lag^(2*1.1),sample_size^(3*2)*lag^(3*1.1),lag^(4*1.1),lag^(5*1.1))
+      k1_coef2 <- c(-2.651888e-06,1.209377e-03,-2.283179e-07,-2.068483e-12 ,4.909868e-10,4.636525e-16,-1.166985e-18,6.138401e-10,2.551747e-12)
+      crit_val <- sum(k1_mod2*k1_coef2) + 0.05
+      return (crit_val)
+      # When sample size is between 71 and 90
+    }else if (70<sample_size & sample_size<=90){
+      k1_mod3 <- c(sample_size^7,lag^2,sample_size^(7)*lag^(2),sample_size^(2*7)*lag^(2*2),sample_size^(2*7),sample_size^(3*7)*lag^(2*2),sample_size^(3*7)*lag^(3*2),lag^(4*2),lag^(5*2))
+      k1_coef3 <- c(3.213511e-17,3.832628e-06,-1.391630e-20,-4.627399e-36 , -6.756123e-31,9.423402e-50,-1.759436e-54,2.815889e-17)
+      crit_val <- sum(k1_mod3*k1_coef3) + 0.05
+      return (crit_val)
+      # When sample size is between 91 and 120
+    }else if (90<sample_size & sample_size<=120){
+      k1_mod4 <- c(sample_size^1.3,lag^1.7,sample_size^(1.3)*lag^(1.7),sample_size^(2*1.3)*lag^(2*1.7),sample_size^(2*1.3),sample_size^(3*1.3)*lag^(2*1.7),sample_size^(3*1.3)*lag^(3*1.7),lag^(4*1.7),lag^(5*1.7))
+      k1_coef4 <- c(5.169171e-06 ,1.265763e-05,-1.568657e-09,-2.021456e-13,-1.215886e-08,3.782395e-16,-4.778001e-20,3.367445e-15, -4.058100e-19)
+      crit_val <- sum(k1_mod4*k1_coef4) + 0.05
+      return (crit_val)
+      # When sample size is between 121 and 200
+    }else if (120<sample_size & sample_size<=200){
+      #c(n^s,m^p,n^(s)*m^(p),n^(2*s)*m^(2*p),n^(2*s),n^(3*s)*m^(2*p),n^(3*s)*m^(3*p),m^(4*p),m^(5*p))
+      k1_mod5 <- c(sample_size^0.8,lag^0.9,sample_size^(0.8)*lag^(0.9),sample_size^(2*0.8)*lag^(2*0.9),sample_size^(2*0.8),sample_size^(3*0.8)*lag^(2*0.9),sample_size^(3*0.8)*lag^(3*0.9),lag^(4*0.9),lag^(5*0.9))
+      k1_coef5 <- c( 5.965628e-05, 8.195340e-04,-1.226501e-05,-8.988964e-09,-1.270615e-06,1.864159e-10,-1.078553e-12,1.232510e-09,6.307588e-12)
+      crit_val <- sum(k1_mod5*k1_coef5) + 0.05
+      return (crit_val)
+      # When sample size is larger than 200
+    }else if (sample_size>200){
+      k1_mod6 <- c(sample_size^1.9,lag^0.8,sample_size^(1.9)*lag^(0.8),sample_size^(2*1.9)*lag^(2*0.8),sample_size^(2*1.9),sample_size^(3*1.9)*lag^(2*0.8),sample_size^(3*1.9)*lag^(3*0.8),lag^(4*0.8),lag^(5*0.8))
+      k1_coef6 <- c(1.234711e-07,4.104048e-04,-6.414618e-09,-1.082332e-14,-4.020633e-12,3.954968e-19,-3.295362e-21,-1.821665e-09,4.556878e-11)
+      crit_val <- sum(k1_mod6*k1_coef6) + 0.05
+      return (crit_val)
+    }
+    # models for analyzing 3 time series
+  }else if (num_of_ts==2){
     # When sample size is less than or equal to 50
     if (sample_size<=50){
       k2_mod1 <- c(sample_size^1.8,lag^1.3,sample_size^(1.8)*lag^(1.3),sample_size^(2*1.8)*lag^(2*1.3),sample_size^(2*1.8),sample_size^(3*1.8)*lag^(2*1.3),sample_size^(3*1.8)*lag^(3*1.3),lag^(4*1.3),lag^(5*1.3))
@@ -171,4 +211,4 @@ MTS_T1_Correction <- function(num_of_ts, sample_size, lag){
   }
 }
 
-MTS_T1_Correction(10,80,76)  
+MTS_T1_Correction(1,65,30)  
